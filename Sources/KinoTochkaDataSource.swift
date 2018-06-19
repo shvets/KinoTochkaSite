@@ -16,19 +16,11 @@ class KinoTochkaDataSource: DataSource {
     var request = params["requestType"] as! String
     let currentPage = params["currentPage"] as? Int ?? 1
 
-//    if selectedItem?.type == "rating" {
-//      request = "Seasons"
-//    }
-//    else
     if selectedItem?.type == "serie" {
       request = "Seasons"
     }
     else if selectedItem?.type == "season" {
       request = "Episodes"
-
-//      if let selectedItem = selectedItem as? KinoTochkaMediaItem {
-//        episodes = selectedItem.episodes
-//      }
     }
 
     switch request {
@@ -78,48 +70,29 @@ class KinoTochkaDataSource: DataSource {
         items = Observable.just(adjustItems(data))
       }
 
-//    case "Genres Group":
-//      if let genresType = params["parentId"] as? String {
-//        let groupedGenres = try service.getGroupedGenres()
-//
-//        if let data = groupedGenres[genresType] {
-//          items = Observable.just(adjustItems(data))
-//        }
-//      }
-
-//    case "Genres":
-//      if let selectedItem = selectedItem,
-//         let path = selectedItem.id,
-//         let data = try service.getMovies(path, page: currentPage)["movies"] as? [Any] {
-//        items = Observable.just(adjustItems(data))
-//      }
-
-//    case "Popular":
-//      let groupedGenres = try service.getGroupedGenres()
-//
-//      if let data = groupedGenres["top"] {
-//        items = Observable.just(adjustItems(data))
-//      }
-//
-//    case "Rating":
-//      if let selectedItem = selectedItem,
-//         let path = selectedItem.id {
-//        if path == "/kino-podborka.html" {
-//          items = Observable.just(try service.getTags())
-//        }
-//        else {
-//          if let data = try service.getMoviesByCriteriaPaginated(path, page: currentPage)["movies"] as? [Any] {
-//            items = Observable.just(adjustItems(data))
-//          }
-//        }
-//      }
-
     case "Seasons":
       if let selectedItem = selectedItem,
          let path = selectedItem.id {
-        let seasons = try service.getSeasons(path, selectedItem.thumb)
+        let seasons = try service.getSeasons(path, selectedItem.thumb) as! [[String: String]]
 
-        items = Observable.just(adjustItems(seasons, selectedItem: selectedItem))
+        if seasons.count == 1 {
+          let path = seasons[0]["id"]!
+
+          let files = try service.getUrls(path)
+
+          if files.count > 0 {
+            var episodes = [KinoTochkaAPI.Episode]()
+            episodes.append(service.buildEpisode(comment: selectedItem.name!, files: files))
+
+            items = Observable.just(adjustItems(episodes, selectedItem: selectedItem))
+          }
+          else {
+            items = Observable.just(adjustItems(seasons, selectedItem: selectedItem))
+          }
+        }
+        else {
+          items = Observable.just(adjustItems(seasons, selectedItem: selectedItem))
+        }
       }
 
     case "Episodes":
@@ -127,9 +100,19 @@ class KinoTochkaDataSource: DataSource {
          let path = selectedItem.id {
         let playlistUrl = try service.getSeasonPlaylistUrl(path)
 
+        var pageSize = params["pageSize"] as! Int
+
         let episodes = try service.getEpisodes(playlistUrl, path: "")
 
-        items = Observable.just(adjustItems(episodes, selectedItem: selectedItem))
+        var episodesOnPage: [KinoTochkaAPI.Episode] = []
+
+        for (index, item) in episodes.enumerated() {
+          if index >= (currentPage - 1) * pageSize && index < currentPage * pageSize {
+            episodesOnPage.append(item)
+          }
+        }
+
+        items = Observable.just(adjustItems(episodesOnPage, selectedItem: selectedItem))
       }
 
     case "Search":
