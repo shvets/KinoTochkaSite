@@ -2,10 +2,10 @@ import UIKit
 import TVSetKit
 import PageLoader
 
-class PopularTableViewController: UITableViewController {
-  static let SegueIdentifier = "Popular"
+class CollectionsTableViewController: UITableViewController {
+  static let SegueIdentifier = "Collections"
 
-  let CellIdentifier = "PopularTableCell"
+  let CellIdentifier = "CollectionsTableCell"
 
 #if os(iOS)
   public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
@@ -31,8 +31,7 @@ class PopularTableViewController: UITableViewController {
 
     func load() throws -> [Any] {
       var params = Parameters()
-      params["requestType"] = "Popular"
-      //params["pageSize"] = self.service.getConfiguration()["pageSize"] as! Int
+      params["requestType"] = "Collections"
 
       return try self.service.dataSource.loadAndWait(params: params)
     }
@@ -62,9 +61,6 @@ class PopularTableViewController: UITableViewController {
 
       cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
 
-//      let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
-//      tableView.addGestureRecognizer(longPressRecognizer)
-
       return cell
     }
     else {
@@ -86,10 +82,19 @@ class PopularTableViewController: UITableViewController {
              let view = sender as? MediaNameTableCell,
               let indexPath = tableView?.indexPath(for: view) {
 
-            destination.params["requestType"] = "Rating"
-            destination.params["selectedItem"] = items.getItem(for: indexPath)
+            destination.params["requestType"] = "Collection"
 
-            destination.configuration = service.getConfiguration()
+            let selectedItem = items.getItem(for: indexPath)
+
+            destination.params["selectedItem"] = selectedItem
+
+            var configuration = service.getConfiguration();
+
+            if selectedItem.id!.contains("bestfilms") {
+              service.setExtendedPageSize(true)
+            }
+
+            destination.configuration = configuration
           }
 
         default: break

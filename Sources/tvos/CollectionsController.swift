@@ -2,9 +2,9 @@ import UIKit
 import TVSetKit
 import PageLoader
 
-class PopularController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-  static let SegueIdentifier = "Popular"
-  let CellIdentifier = "PopularCell"
+class CollectionsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+  static let SegueIdentifier = "Collections"
+  let CellIdentifier = "CollectionsCell"
 
 #if os(tvOS)
   public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -32,7 +32,7 @@ class PopularController: UICollectionViewController, UICollectionViewDelegateFlo
 
     func load() throws -> [Any] {
       var params = Parameters()
-      params["requestType"] = "Popular"
+      params["requestType"] = "Collections"
 
       return try self.service.dataSource.loadAndWait(params: params)
     }
@@ -106,7 +106,7 @@ class PopularController: UICollectionViewController, UICollectionViewDelegateFlo
              let view = sender as? MediaNameCell,
              let indexPath = collectionView?.indexPath(for: view) {
 
-            destination.params["requestType"] = "Rating"
+            destination.params["requestType"] = "Collection"
             destination.params["selectedItem"] = items.getItem(for: indexPath)
             destination.configuration = service.getConfiguration()
 

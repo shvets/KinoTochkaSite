@@ -2,13 +2,20 @@ import UIKit
 import TVSetKit
 import PageLoader
 
-class GenresGroupTableViewController: UITableViewController {
-  static let SegueIdentifier = "Genres Group"
-  let CellIdentifier = "GenreGroupTableCell"
+class UserCollectionsTableViewController: UITableViewController {
+  static let SegueIdentifier = "User Collections"
+
+  let CellIdentifier = "UserCollectionsTableCell"
+
+#if os(iOS)
+  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+#endif
 
   let localizer = Localizer(KinoTochkaService.BundleId, bundleClass: KinoTochkaSite.self)
-  let pageLoader = PageLoader()
+
   let service = KinoTochkaService(true)
+
+  let pageLoader = PageLoader()
 
   private var items = Items()
 
@@ -17,8 +24,16 @@ class GenresGroupTableViewController: UITableViewController {
 
     self.clearsSelectionOnViewWillAppear = false
 
+#if os(iOS)
+    tableView?.backgroundView = activityIndicatorView
+    pageLoader.spinner = PlainSpinner(activityIndicatorView)
+#endif
+
     func load() throws -> [Any] {
-      return self.loadGenresGroupMenu()
+      var params = Parameters()
+      params["requestType"] = "User Collections"
+
+      return try self.service.dataSource.loadAndWait(params: params)
     }
 
     pageLoader.loadData(onLoad: load) { result in
@@ -30,13 +45,7 @@ class GenresGroupTableViewController: UITableViewController {
     }
   }
 
-   func loadGenresGroupMenu() -> [Item] {
-    return [
-      MediaName(name: "Movies"),
-      MediaName(name: "Series"),
-      MediaName(name: "Anime")
-    ]
-  }
+// MARK: UITableViewDataSource
 
   override open func numberOfSections(in tableView: UITableView) -> Int {
     return 1
@@ -52,6 +61,9 @@ class GenresGroupTableViewController: UITableViewController {
 
       cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
 
+//      let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
+//      tableView.addGestureRecognizer(longPressRecognizer)
+
       return cell
     }
     else {
@@ -61,39 +73,27 @@ class GenresGroupTableViewController: UITableViewController {
 
   override open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     if let view = tableView.cellForRow(at: indexPath) {
-      performSegue(withIdentifier: GenresController.SegueIdentifier, sender: view)
+      performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
     }
   }
-
-  // MARK: - Navigation
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case GenresController.SegueIdentifier:
-          if let destination = segue.destination as? GenresTableViewController,
-             let selectedCell = sender as? MediaNameTableCell,
-             let indexPath = tableView.indexPath(for: selectedCell) {
+      case MediaItemsController.SegueIdentifier:
+        if let destination = segue.destination.getActionController() as? MediaItemsController,
+           let view = sender as? MediaNameTableCell,
+           let indexPath = tableView?.indexPath(for: view) {
 
-            let mediaItem = items.getItem(for: indexPath)
-            
-            switch mediaItem.name! {
-            case "Movies":
-              destination.parentId = "film"
-              
-            case "Series":
-              destination.parentId = "series"
-              
-            case "Anime":
-              destination.parentId = "animes"
-              
-            default: break
-            }
+          destination.params["requestType"] = "User Collection"
+          destination.params["selectedItem"] = items.getItem(for: indexPath)
 
-          }
+          destination.configuration = service.getConfiguration()
+        }
 
-        default: break
+      default: break
       }
     }
   }
+
 }

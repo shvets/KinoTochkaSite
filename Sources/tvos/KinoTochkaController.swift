@@ -50,8 +50,8 @@ open class KinoTochkaController: UICollectionViewController, UICollectionViewDel
       MediaName(name: "Animations", imageName: "Retro TV"),
       MediaName(name: "Anime", imageName: "Retro TV"),
       MediaName(name: "Shows", imageName: "Briefcase"),
-      // MediaName(name: "Genres", imageName: "Comedy"),
-      // MediaName(name: "Popular", imageName: "Briefcase"),
+      MediaName(name: "Collections", imageName: "Briefcase"),
+      MediaName(name: "User Collections", imageName: "Briefcase"),
       MediaName(name: "Settings", imageName: "Engineering"),
       MediaName(name: "Search", imageName: "Search")
     ]
@@ -88,11 +88,11 @@ open class KinoTochkaController: UICollectionViewController, UICollectionViewDel
         let mediaItem = items.getItem(for: indexPath)
 
         switch mediaItem.name! {
-//        case "Genres":
-//          performSegue(withIdentifier: GenresGroupController.SegueIdentifier, sender: view)
-//
-//        case "Popular":
-//          performSegue(withIdentifier: PopularController.SegueIdentifier, sender: view)
+        case "Collections":
+          performSegue(withIdentifier: CollectionsController.SegueIdentifier, sender: view)
+
+        case "User Collections":
+          performSegue(withIdentifier: UserCollectionsController.SegueIdentifier, sender: view)
 
         case "Settings":
           performSegue(withIdentifier: "Settings", sender: view)

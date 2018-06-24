@@ -115,6 +115,32 @@ class KinoTochkaDataSource: DataSource {
         items = Observable.just(adjustItems(episodesOnPage, selectedItem: selectedItem))
       }
 
+    case "Collections":
+      let collections = try service.getCollections()
+
+      items = Observable.just(adjustItems(collections))
+
+    case "Collection":
+      if let selectedItem = selectedItem,
+         let path = selectedItem.id {
+        if let data = try service.getCollection(path, page: currentPage)["movies"] as? [Any] {
+          items = Observable.just(adjustItems(data))
+        }
+      }
+
+    case "User Collections":
+      let collections = try service.getUserCollections()
+
+      items = Observable.just(adjustItems(collections))
+
+    case "User Collection":
+      if let selectedItem = selectedItem,
+         let path = selectedItem.id {
+        if let data = try service.getUserCollection(path, page: currentPage)["movies"] as? [Any] {
+          items = Observable.just(adjustItems(data))
+        }
+      }
+
     case "Search":
       if let query = params["query"] as? String {
         if !query.isEmpty {

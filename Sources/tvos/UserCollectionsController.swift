@@ -2,9 +2,9 @@ import UIKit
 import TVSetKit
 import PageLoader
 
-class GenresController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-  static let SegueIdentifier = "Genres"
-  let CellIdentifier = "GenreCell"
+class UserCollectionsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+  static let SegueIdentifier = "User Collections"
+  let CellIdentifier = "UserCollectionsCell"
 
 #if os(tvOS)
   public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
@@ -13,13 +13,11 @@ class GenresController: UICollectionViewController, UICollectionViewDelegateFlow
   let localizer = Localizer(KinoTochkaService.BundleId, bundleClass: KinoTochkaSite.self)
 
   let service = KinoTochkaService()
-  
+
   let pageLoader = PageLoader()
 
   private var items = Items()
 
-  var parentId: String?
-  
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -34,8 +32,7 @@ class GenresController: UICollectionViewController, UICollectionViewDelegateFlow
 
     func load() throws -> [Any] {
       var params = Parameters()
-      params["requestType"] = "Genres Group"
-      params["parentId"] = self.parentId
+      params["requestType"] = "User Collections"
 
       return try self.service.dataSource.loadAndWait(params: params)
     }
@@ -60,7 +57,7 @@ class GenresController: UICollectionViewController, UICollectionViewDelegateFlow
     collectionView?.collectionViewLayout = layout
   }
 
- // MARK: UICollectionViewDataSource
+  // MARK: UICollectionViewDataSource
 
   override open func numberOfSections(in collectionView: UICollectionView) -> Int {
     return 1
@@ -86,27 +83,37 @@ class GenresController: UICollectionViewController, UICollectionViewDelegateFlow
   }
 
   @objc open func tapped(_ gesture: UITapGestureRecognizer) {
-    if let view = gesture.view as? UICollectionViewCell {
-      performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
+    if let location = gesture.view as? UICollectionViewCell {
+      navigate(from: location)
     }
+  }
+
+  override open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    if let location = collectionView.cellForItem(at: indexPath) {
+      navigate(from: location)
+    }
+  }
+
+  func navigate(from view: UICollectionViewCell, playImmediately: Bool=false) {
+    performSegue(withIdentifier: MediaItemsController.SegueIdentifier, sender: view)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let identifier = segue.identifier {
       switch identifier {
-        case MediaItemsController.SegueIdentifier:
-          if let destination = segue.destination.getActionController() as? MediaItemsController,
-             let view = sender as? MediaNameCell,
-             let indexPath = collectionView?.indexPath(for: view) {
+      case MediaItemsController.SegueIdentifier:
+        if let destination = segue.destination.getActionController() as? MediaItemsController,
+           let view = sender as? MediaNameCell,
+           let indexPath = collectionView?.indexPath(for: view) {
 
-            destination.params["requestType"] = "Genres"
-            destination.params["selectedItem"] = items.getItem(for: indexPath)
-            destination.configuration = service.getConfiguration()
+          destination.params["requestType"] = "User Collection"
+          destination.params["selectedItem"] = items.getItem(for: indexPath)
+          destination.configuration = service.getConfiguration()
 
-            destination.collectionView?.collectionViewLayout = service.buildLayout()!
-          }
+          destination.collectionView?.collectionViewLayout = service.buildLayout()!
+        }
 
-        default: break
+      default: break
       }
     }
   }

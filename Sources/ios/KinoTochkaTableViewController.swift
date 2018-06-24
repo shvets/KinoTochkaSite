@@ -37,8 +37,8 @@ open class KinoTochkaTableViewController: UITableViewController {
       MediaName(name: "Animations", imageName: "Retro TV"),
       MediaName(name: "Anime", imageName: "Retro TV"),
       MediaName(name: "Shows", imageName: "Briefcase"),
-//      MediaName(name: "Genres", imageName: "Comedy"),
-//      MediaName(name: "Popular", imageName: "Briefcase"),
+      MediaName(name: "Collections", imageName: "Briefcase"),
+      MediaName(name: "User Collections", imageName: "Briefcase"),
       MediaName(name: "Settings", imageName: "Engineering"),
       MediaName(name: "Search", imageName: "Search")
     ]
@@ -60,9 +60,6 @@ open class KinoTochkaTableViewController: UITableViewController {
 
       cell.configureCell(item: item, localizedName: localizer.getLocalizedName(item.name))
 
-//      let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
-//      tableView.addGestureRecognizer(longPressRecognizer)
-
       return cell
     }
     else {
@@ -76,11 +73,11 @@ open class KinoTochkaTableViewController: UITableViewController {
       let mediaItem = items.getItem(for: indexPath)
 
       switch mediaItem.name! {
-//        case "Genres":
-//          performSegue(withIdentifier: GenresGroupTableViewController.SegueIdentifier, sender: view)
-//
-//        case "Popular":
-//          performSegue(withIdentifier: PopularTableViewController.SegueIdentifier, sender: view)
+        case "Collections":
+          performSegue(withIdentifier: CollectionsTableViewController.SegueIdentifier, sender: view)
+
+        case "User Collections":
+          performSegue(withIdentifier: UserCollectionsTableViewController.SegueIdentifier, sender: view)
 
         case "Settings":
           performSegue(withIdentifier: "Settings", sender: view)

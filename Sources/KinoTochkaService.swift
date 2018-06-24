@@ -20,10 +20,16 @@ public class KinoTochkaService {
 
   var dataSource = KinoTochkaDataSource()
 
+  var extendedPageSize: Bool = false
+
   let mobile: Bool
 
   public init(_ mobile: Bool=false) {
     self.mobile = mobile
+  }
+
+  public func setExtendedPageSize(_ extendedPageSize: Bool) {
+    self.extendedPageSize = extendedPageSize
   }
 
   func buildLayout() -> UICollectionViewFlowLayout? {
@@ -46,7 +52,7 @@ public class KinoTochkaService {
   func getConfiguration() -> [String: Any] {
     var conf = [String: Any]()
 
-    conf["pageSize"] = 20
+    conf["pageSize"] = self.extendedPageSize ? 25 : 20
 
     if mobile {
       conf["rowSize"] = 1

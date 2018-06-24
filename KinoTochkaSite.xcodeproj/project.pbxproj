@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DBA11E477F5EA59B197F874 /* UserCollectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1FEA2A836B2A1C3E5854 /* UserCollectionsController.swift */; };
+		2DBA1EE98FC63963BFB59B35 /* UserCollectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DBA1DB4D6978460D0D1F83D /* UserCollectionsTableViewController.swift */; };
 		FA6C12871EB04B9800DA4A90 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6C12861EB04B9800DA4A90 /* Alamofire.framework */; };
 		FAAAE40820D3413B00F1FF4C /* KinoTochkaMediaItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAE40520D3413B00F1FF4C /* KinoTochkaMediaItem.swift */; };
 		FAAAE40920D3413B00F1FF4C /* KinoTochkaDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAAE40620D3413B00F1FF4C /* KinoTochkaDataSource.swift */; };
@@ -23,17 +25,15 @@
 		FAAFE49B1EA3F42C0092387A /* Unbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAFE4931EA3F42C0092387A /* Unbox.framework */; };
 		FAAFE49C1EA3F42C0092387A /* WebAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAFE4941EA3F42C0092387A /* WebAPI.framework */; };
 		FAAFE49D1EA3F42C0092387A /* Wrap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAFE4951EA3F42C0092387A /* Wrap.framework */; };
-		FAAFE5021EA6E2C10092387A /* GenresController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE4FA1EA6E2C10092387A /* GenresController.swift */; };
-		FAAFE5031EA6E2C10092387A /* GenresGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE4FB1EA6E2C10092387A /* GenresGroupController.swift */; };
-		FAAFE5061EA6E2C20092387A /* PopularController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE4FE1EA6E2C10092387A /* PopularController.swift */; };
+		FAAFE5061EA6E2C20092387A /* CollectionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE4FE1EA6E2C10092387A /* CollectionsController.swift */; };
 		FAAFE5091EA6E2C20092387A /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE5011EA6E2C10092387A /* SettingsController.swift */; };
-		FAAFE5121EA6E2CC0092387A /* GenresGroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE50A1EA6E2CC0092387A /* GenresGroupTableViewController.swift */; };
-		FAAFE5131EA6E2CC0092387A /* GenresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE50B1EA6E2CC0092387A /* GenresTableViewController.swift */; };
-		FAAFE5171EA6E2CC0092387A /* PopularTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE50F1EA6E2CC0092387A /* PopularTableViewController.swift */; };
+		FAAFE5171EA6E2CC0092387A /* CollectionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE50F1EA6E2CC0092387A /* CollectionsTableViewController.swift */; };
 		FAAFE5191EA6E2CC0092387A /* SettingsTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAFE5111EA6E2CC0092387A /* SettingsTableController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DBA1DB4D6978460D0D1F83D /* UserCollectionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionsTableViewController.swift; sourceTree = "<group>"; };
+		2DBA1FEA2A836B2A1C3E5854 /* UserCollectionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionsController.swift; sourceTree = "<group>"; };
 		FA6C12861EB04B9800DA4A90 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-auvgeykttffxrlaelzqpbfeqnwis/Build/Products/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		FA9BF82E1EA3F1DE002F7D52 /* KinoTochkaSite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KinoTochkaSite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9BF8321EA3F1DE002F7D52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,13 +54,9 @@
 		FAAFE4931EA3F42C0092387A /* Unbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Unbox.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-auvgeykttffxrlaelzqpbfeqnwis/Build/Products/Debug-iphonesimulator/Unbox.framework"; sourceTree = "<group>"; };
 		FAAFE4941EA3F42C0092387A /* WebAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebAPI.framework; path = "../WebAPI/build/Debug-appletvos/WebAPI.framework"; sourceTree = "<group>"; };
 		FAAFE4951EA3F42C0092387A /* Wrap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Wrap.framework; path = "../../../../../../../Library/Developer/Xcode/DerivedData/EtvnetApp-auvgeykttffxrlaelzqpbfeqnwis/Build/Products/Debug-iphonesimulator/Wrap.framework"; sourceTree = "<group>"; };
-		FAAFE4FA1EA6E2C10092387A /* GenresController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresController.swift; sourceTree = "<group>"; };
-		FAAFE4FB1EA6E2C10092387A /* GenresGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresGroupController.swift; sourceTree = "<group>"; };
-		FAAFE4FE1EA6E2C10092387A /* PopularController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularController.swift; sourceTree = "<group>"; };
+		FAAFE4FE1EA6E2C10092387A /* CollectionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionsController.swift; sourceTree = "<group>"; };
 		FAAFE5011EA6E2C10092387A /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		FAAFE50A1EA6E2CC0092387A /* GenresGroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresGroupTableViewController.swift; sourceTree = "<group>"; };
-		FAAFE50B1EA6E2CC0092387A /* GenresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenresTableViewController.swift; sourceTree = "<group>"; };
-		FAAFE50F1EA6E2CC0092387A /* PopularTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularTableViewController.swift; sourceTree = "<group>"; };
+		FAAFE50F1EA6E2CC0092387A /* CollectionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionsTableViewController.swift; sourceTree = "<group>"; };
 		FAAFE5111EA6E2CC0092387A /* SettingsTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,10 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				FAAAE40D20D3416D00F1FF4C /* KinoTochkaTableViewController.swift */,
-				FAAFE50A1EA6E2CC0092387A /* GenresGroupTableViewController.swift */,
-				FAAFE50B1EA6E2CC0092387A /* GenresTableViewController.swift */,
-				FAAFE50F1EA6E2CC0092387A /* PopularTableViewController.swift */,
+				FAAFE50F1EA6E2CC0092387A /* CollectionsTableViewController.swift */,
 				FAAFE5111EA6E2CC0092387A /* SettingsTableController.swift */,
+				2DBA1DB4D6978460D0D1F83D /* UserCollectionsTableViewController.swift */,
 			);
 			path = ios;
 			sourceTree = "<group>";
@@ -148,10 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				FAAAE40B20D3415A00F1FF4C /* KinoTochkaController.swift */,
-				FAAFE4FA1EA6E2C10092387A /* GenresController.swift */,
-				FAAFE4FB1EA6E2C10092387A /* GenresGroupController.swift */,
-				FAAFE4FE1EA6E2C10092387A /* PopularController.swift */,
+				FAAFE4FE1EA6E2C10092387A /* CollectionsController.swift */,
 				FAAFE5011EA6E2C10092387A /* SettingsController.swift */,
+				2DBA1FEA2A836B2A1C3E5854 /* UserCollectionsController.swift */,
 			);
 			path = tvos;
 			sourceTree = "<group>";
@@ -241,18 +235,16 @@
 			files = (
 				FAAAE40E20D3416E00F1FF4C /* KinoTochkaTableViewController.swift in Sources */,
 				FAAFE5091EA6E2C20092387A /* SettingsController.swift in Sources */,
-				FAAFE5171EA6E2CC0092387A /* PopularTableViewController.swift in Sources */,
+				FAAFE5171EA6E2CC0092387A /* CollectionsTableViewController.swift in Sources */,
 				FAAFE5191EA6E2CC0092387A /* SettingsTableController.swift in Sources */,
 				FAAAE40920D3413B00F1FF4C /* KinoTochkaDataSource.swift in Sources */,
-				FAAFE5021EA6E2C10092387A /* GenresController.swift in Sources */,
 				FAAAE40A20D3413B00F1FF4C /* KinoTochkaService.swift in Sources */,
-				FAAFE5061EA6E2C20092387A /* PopularController.swift in Sources */,
-				FAAFE5131EA6E2CC0092387A /* GenresTableViewController.swift in Sources */,
-				FAAFE5031EA6E2C10092387A /* GenresGroupController.swift in Sources */,
+				FAAFE5061EA6E2C20092387A /* CollectionsController.swift in Sources */,
 				FAAAE40820D3413B00F1FF4C /* KinoTochkaMediaItem.swift in Sources */,
 				FAAAE40C20D3415A00F1FF4C /* KinoTochkaController.swift in Sources */,
 				FAAAE41220D341A600F1FF4C /* KinoTochkaSite.swift in Sources */,
-				FAAFE5121EA6E2CC0092387A /* GenresGroupTableViewController.swift in Sources */,
+				2DBA11E477F5EA59B197F874 /* UserCollectionsController.swift in Sources */,
+				2DBA1EE98FC63963BFB59B35 /* UserCollectionsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
