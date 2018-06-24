@@ -113,6 +113,7 @@ open class KinoTochkaTableViewController: UITableViewController {
           if let destination = segue.destination.getActionController() as? SearchTableController {
             destination.params["requestType"] = "Search"
             destination.params["parentName"] = localizer.localize("Search Results")
+            destination.params["pageSize"] = 10
 
             destination.configuration = service.getConfiguration()
           }

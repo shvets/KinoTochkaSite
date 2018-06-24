@@ -90,10 +90,6 @@ class CollectionsTableViewController: UITableViewController {
 
             var configuration = service.getConfiguration();
 
-            if selectedItem.id!.contains("bestfilms") {
-              service.setExtendedPageSize(true)
-            }
-
             destination.configuration = configuration
           }
 
