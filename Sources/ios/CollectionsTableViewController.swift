@@ -88,7 +88,7 @@ class CollectionsTableViewController: UITableViewController {
 
             destination.params["selectedItem"] = selectedItem
 
-            var configuration = service.getConfiguration();
+            let configuration = service.getConfiguration();
 
             destination.configuration = configuration
           }

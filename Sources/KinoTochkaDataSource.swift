@@ -11,7 +11,7 @@ class KinoTochkaDataSource: DataSource {
 
     let selectedItem = params["selectedItem"] as? MediaItem
 
-    var episodes = [KinoTochkaAPI.Episode]()
+    // var episodes = [KinoTochkaAPI.Episode]()
 
     var request = params["requestType"] as! String
     let currentPage = params["currentPage"] as? Int ?? 1
@@ -100,7 +100,7 @@ class KinoTochkaDataSource: DataSource {
          let path = selectedItem.id {
         let playlistUrl = try service.getSeasonPlaylistUrl(path)
 
-        var pageSize = params["pageSize"] as! Int
+        let pageSize = params["pageSize"] as! Int
 
         let episodes = try service.getEpisodes(playlistUrl, path: "")
 
