@@ -29,8 +29,8 @@ class SettingsTableController: UITableViewController {
 
   func getSettingsMenu() throws -> [Any] {
      return [
-        Item(name: "Reset History"),
-        Item(name: "Reset Bookmarks")
+        MediaName(name: "Reset History"),
+        MediaName(name: "Reset Bookmarks")
       ]
   }
 

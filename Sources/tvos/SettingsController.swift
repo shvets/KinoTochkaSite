@@ -38,10 +38,10 @@ class SettingsController: UICollectionViewController, UICollectionViewDelegateFl
     collectionView?.collectionViewLayout = layout
   }
 
-  func getSettingsMenu() throws -> [Any] {
+  func getSettingsMenu() throws -> [MediaName] {
     return [
-      Item(name: "Reset History"),
-      Item(name: "Reset Bookmarks")
+      MediaName(name: "Reset History"),
+      MediaName(name: "Reset Bookmarks")
     ]
   }
 
