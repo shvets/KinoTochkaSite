@@ -11,8 +11,6 @@ class KinoTochkaDataSource: DataSource {
 
     let selectedItem = params["selectedItem"] as? MediaItem
 
-    // var episodes = [KinoTochkaAPI.Episode]()
-
     var request = params["requestType"] as! String
     let currentPage = params["currentPage"] as? Int ?? 1
 
@@ -103,16 +101,9 @@ class KinoTochkaDataSource: DataSource {
         let pageSize = params["pageSize"] as! Int
 
         let episodes = try service.getEpisodes(playlistUrl, path: "")
+        let paginatedEpisodes = paginated(items: episodes, currentPage: currentPage, pageSize: pageSize)
 
-        var episodesOnPage: [KinoTochkaAPI.Episode] = []
-
-        for (index, item) in episodes.enumerated() {
-          if index >= (currentPage - 1) * pageSize && index < currentPage * pageSize {
-            episodesOnPage.append(item)
-          }
-        }
-
-        items = Observable.just(adjustItems(episodesOnPage, selectedItem: selectedItem))
+        items = Observable.just(adjustItems(paginatedEpisodes, selectedItem: selectedItem))
       }
 
     case "Collections":
@@ -218,7 +209,7 @@ class KinoTochkaDataSource: DataSource {
     return newItem
   }
 
-    func createSeasonItem(_ item: KinoTochkaAPI.Season, selectedItem: MediaItem, seasonNumber: String) -> Item {
+  func createSeasonItem(_ item: KinoTochkaAPI.Season, selectedItem: MediaItem, seasonNumber: String) -> Item {
     let newItem = KinoTochkaMediaItem(data: ["name": ""])
 
     newItem.name = item.name
@@ -239,7 +230,7 @@ class KinoTochkaDataSource: DataSource {
     return newItem
   }
 
-    func createEpisodeItem(_ item: KinoTochkaAPI.Episode, selectedItem: MediaItem) -> Item {
+  func createEpisodeItem(_ item: KinoTochkaAPI.Episode, selectedItem: MediaItem) -> Item {
     let newItem = KinoTochkaMediaItem(data: ["name": ""])
 
     newItem.name = item.name
