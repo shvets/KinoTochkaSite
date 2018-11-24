@@ -53,11 +53,16 @@ class KinoTochkaDataSource: DataSource {
         items = Observable.just(adjustItems(data))
       }
 
-    case "Animations":
-      if let data = try service.getAnimations(page: currentPage)["movies"] as? [Any] {
+    case "Russian Animations":
+      if let data = try service.getRussianAnimations(page: currentPage)["movies"] as? [Any] {
         items = Observable.just(adjustItems(data))
       }
 
+    case "Foreign Animations":
+      if let data = try service.getForeignAnimations(page: currentPage)["movies"] as? [Any] {
+        items = Observable.just(adjustItems(data))
+      }
+      
     case "Anime":
       if let data = try service.getAnime(page: currentPage)["movies"] as? [Any] {
         items = Observable.just(adjustItems(data))
