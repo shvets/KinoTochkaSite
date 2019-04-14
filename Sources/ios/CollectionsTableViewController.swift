@@ -8,7 +8,7 @@ class CollectionsTableViewController: UITableViewController {
   let CellIdentifier = "CollectionsTableCell"
 
 #if os(iOS)
-  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+  public let activityIndicatorView = UIActivityIndicatorView(style: .gray)
 #endif
 
   let localizer = Localizer(KinoTochkaService.BundleId, bundleClass: KinoTochkaSite.self)

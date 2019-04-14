@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.homepage     = "https://github.com/shvets/KinoTochkaSite"
   s.authors = { "Alexander Shvets" => "alexander.shvets@gmail.com" }
   s.license      = "MIT"
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '5' }
 
   s.ios.deployment_target = "10.0"
   #s.osx.deployment_target = "10.10"
