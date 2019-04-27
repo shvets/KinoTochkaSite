@@ -7,7 +7,7 @@ class CollectionsController: UICollectionViewController, UICollectionViewDelegat
   let CellIdentifier = "CollectionsCell"
 
 #if os(tvOS)
-  public let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    public let activityIndicatorView = UIActivityIndicatorView(style: .whiteLarge)
 #endif
 
   let localizer = Localizer(KinoTochkaService.BundleId, bundleClass: KinoTochkaSite.self)
