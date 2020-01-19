@@ -1,5 +1,5 @@
 import UIKit
-import WebAPI
+import MediaApis
 import TVSetKit
 
 class KinoTochkaMediaItem: MediaItem {
@@ -29,7 +29,8 @@ class KinoTochkaMediaItem: MediaItem {
       urls = files
     }
     else {
-      urls = try service.getUrls(id!)
+      let newPath = KinoTochkaAPI.getURLPathOnly(id!, baseUrl: KinoTochkaAPI.SiteUrl)
+      urls = try service.getUrls(newPath)
     }
 
     let qualityLevels = QualityLevel.availableLevels(urls.count)

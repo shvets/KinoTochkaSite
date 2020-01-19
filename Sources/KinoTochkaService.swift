@@ -1,5 +1,6 @@
-import WebAPI
+
 import TVSetKit
+import MediaApis
 
 public class KinoTochkaService {
   static let shared: KinoTochkaAPI = {

@@ -80,10 +80,10 @@ class SettingsTableController: UITableViewController {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      let history = self.service.history
-
-      history.clear()
-      history.save()
+      if let history = self.service.historyManager.history {
+        history.clear()
+        history.save()
+      }
     }
 
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
@@ -101,10 +101,10 @@ class SettingsTableController: UITableViewController {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
     let okAction = UIAlertAction(title: "OK", style: .default) { _ in
-      let bookmarks = self.service.bookmarks
-
-      bookmarks.clear()
-      bookmarks.save()
+      if let bookmarks = self.service.bookmarksManager.bookmarks {
+        bookmarks.clear()
+        bookmarks.save()
+      }
     }
 
     let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)

@@ -34,7 +34,7 @@ class UserCollectionsController: UICollectionViewController, UICollectionViewDel
       var params = Parameters()
       params["requestType"] = "User Collections"
 
-      return try self.service.dataSource.loadAndWait(params: params)
+      return try self.service.dataSource.load(params: params)
     }
 
     pageLoader.loadData(onLoad: load) { result in

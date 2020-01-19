@@ -34,7 +34,7 @@ class CollectionsController: UICollectionViewController, UICollectionViewDelegat
       var params = Parameters()
       params["requestType"] = "Collections"
 
-      return try self.service.dataSource.loadAndWait(params: params)
+      return try self.service.dataSource.load(params: params)
     }
     
     pageLoader.loadData(onLoad: load) { result in
